@@ -36,13 +36,21 @@
 .title{
   box-shadow: 6px 6px #72B8F9;
   display: inline-block;
- 
 }
+.cardw{
+  width: 100%;
+}
+
 
 .loginForm{
 
   padding-top:100px ;
   width: 50%;
+}
+
+ul, li { margin-left: 0; padding-left: 0; }
+ul {
+  list-style:none;
 }
 .App-logo {
   height: 40vmin;
@@ -64,6 +72,22 @@
  margin-right: 15px;
 }
 
+
+.box{
+ width: 75px;
+ height:75px;
+
+}
+
+.feedHeading{
+font-size: 16px;
+}
+.feedSubHeading{
+font-size: 14px;
+}
+.postCreateBtn{
+  width: 180px;
+}
 
 
 @media (prefers-reduced-motion: no-preference) {
