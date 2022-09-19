@@ -12,6 +12,6 @@ public class DemoController {
     @ResponseBody
     public String welcome()
     {
-        return "Hello Pradeep Maurya";
+        return "Hello Pradeep";
     }
 }
