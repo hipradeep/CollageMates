@@ -10,7 +10,6 @@ import NoPage2 from '../error/NoPage2';
 export default function DashBoard() {
     return (
         <div className='container px-5'>
-
             <Routes>
 
                 <Route path="/" element={<Index />} >

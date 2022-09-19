@@ -29,7 +29,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div  className='text-center'>
-                <Link to="  ">
+                <Link to=" ">
                             <button type="submit" class="btn btn-primary  rounded-5 mt-3 postCreateBtn">Post <FiEdit/></button></Link>  
                 </div>
               
