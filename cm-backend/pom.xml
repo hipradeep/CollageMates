@@ -14,7 +14,7 @@
 	<name>CollegeMates</name>
 	<description>A  social media web-based application for college students and their faculties. They can create their profile, search for their mates and colleagues, create posts, and see their feeds. The college pages will help them to connect with each other.</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 	<!-- 	<dependency>
