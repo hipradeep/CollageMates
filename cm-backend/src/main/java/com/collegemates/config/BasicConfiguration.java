@@ -33,7 +33,7 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().disable()
                 .authorizeRequests()
                  //allow endpoint, without token
-                .antMatchers("/token").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
