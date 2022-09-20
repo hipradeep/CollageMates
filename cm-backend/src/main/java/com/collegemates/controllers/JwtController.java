@@ -2,8 +2,8 @@ package com.collegemates.controllers;
 
 
 import com.collegemates.helper.JwtUtil;
-import com.collegemates.models.JwtAuthResponse;
-import com.collegemates.models.JwtRequest;
+import com.collegemates.entities.JwtAuthResponse;
+import com.collegemates.entities.JwtRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.collegemates.models;
+package com.collegemates.entities;
 
 public class JwtRequest {
     private String username;
