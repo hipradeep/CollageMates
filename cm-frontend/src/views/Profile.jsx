@@ -34,7 +34,6 @@ export default function Profile() {
                 <div className='fs-6'>Student Computer Science</div>
                 <div className='fs-6 mt-1'><GoLocation className='text-primary me-2' />Lucknow Utter Pradesh</div>
 
-
               </div>
 
             </div>
@@ -45,17 +44,17 @@ export default function Profile() {
           </div>
           <div className="row">
             <div >
-            <div className='text-start mt-5 mb-1'>
-              <div className='feedSubHeading'>
+            <div className='text-start mt-5 mb-1 block'>
+              <div className='feedSubHeading text-start'>
                 <b>Following</b> 125
                 <b className='ms-3'>Mates</b> 500
               </div>
-              
-            </div>
-
-            <div className='text-end bg'>
+              <div className='text-end bg text-end'>
               pradeep
             </div>
+            </div>
+
+            
             </div>
            
           </div>
