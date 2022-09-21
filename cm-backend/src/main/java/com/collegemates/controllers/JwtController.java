@@ -1,6 +1,6 @@
 package com.collegemates.controllers;
 
-
+/*
 import com.collegemates.helper.JwtUtil;
 import com.collegemates.entities.JwtAuthResponse;
 import com.collegemates.entities.JwtRequest;
@@ -57,3 +57,4 @@ public class JwtController {
         }
     }
 }
+*/

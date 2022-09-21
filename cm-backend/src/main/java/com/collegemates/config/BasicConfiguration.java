@@ -1,5 +1,6 @@
 package com.collegemates.config;
-
+/*
+*
 
 import com.collegemates.security.CustomUserDetailsService;
 import com.collegemates.security.JwtAuthenticationEntryPoint;
@@ -67,3 +68,4 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
 
 }
+*/

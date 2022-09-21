@@ -4,14 +4,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+//@RequestMapping("/api/userss")
 public class Home {
 
-    @RequestMapping("/")
+
+    @RequestMapping("/yuy")
     public String helloGFG()
     {
-        return "Hello Pradeep";
+        return "Hello Welcome";
     }
-
     @RequestMapping("/welcome")
     public String homeAS()
     {

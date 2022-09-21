@@ -1,26 +1,16 @@
 package com.collegemates.entities;
 
 
-import java.util.*;
+
+import java.util.Date;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,9 +40,18 @@ public class User
     @Column(name = "user_type", nullable = false, length = 20)
     private String userType;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+   // @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "dob")
-    private Date dob;
+   // @Temporal(TemporalType.DATE)
+    private String dob;
+
+    @Column(name = "bio", nullable = true, length = 512)
+    private String bio;
+
+
+    @Column(name = "createdDateTime", insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDateTime=new Date(System.currentTimeMillis());
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<Post> posts = new ArrayList<>();

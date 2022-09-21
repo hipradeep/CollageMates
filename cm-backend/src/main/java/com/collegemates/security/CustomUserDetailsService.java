@@ -1,5 +1,5 @@
 package com.collegemates.security;
-
+/*
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,3 +20,4 @@ public class CustomUserDetailsService implements UserDetailsService {
         else throw new UsernameNotFoundException("User not found");
     }
 }
+*/

@@ -1,6 +1,10 @@
 package com.collegemates.controllers;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -26,17 +30,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
+
+/*	@RequestMapping("/")
+	public String helloGFG()
+	{
+		return "Hello Welcome";
+	}*/
 
 	// POST-create user
 	@PostMapping("/")
 	public ResponseEntity<UserDto> createUser(@Valid  @RequestBody UserDto userDto) {
 
+
 		UserDto createUserDto = this.userService.createUser(userDto);
 		return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
 	}
+	public static LocalDateTime covertDate(String date) throws ParseException {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+		LocalDateTime dateTime = LocalDateTime.parse(date,formatter);
+		return dateTime;
+	}
 	// PUT- update user
-
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") int uid) {
 		UserDto updateUser = this.userService.updateUser(userDto, uid);

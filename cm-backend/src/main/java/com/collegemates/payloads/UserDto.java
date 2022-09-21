@@ -2,7 +2,6 @@ package com.collegemates.payloads;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.*;
 
 import lombok.Data;
@@ -33,7 +32,10 @@ public class UserDto {
 	@NotEmpty
 	private String userType;
 
+
+	private String bio;
+
 	@NotEmpty
-	@DateTimeFormat(pattern = "dd-MM-yyyy") //10-12-2002
-	private Date dob;
+	//@DateTimeFormat(pattern = "dd-MM-yyyy") //10-12-2002
+	private String dob;
 }
