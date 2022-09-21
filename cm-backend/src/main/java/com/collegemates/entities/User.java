@@ -2,6 +2,7 @@ package com.collegemates.entities;
 
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -26,8 +27,8 @@ public class User
 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id= 0L;
     @Column(name = "user_name", nullable = false, length = 100)
     private String name;
 
@@ -41,17 +42,23 @@ public class User
     private String userType;
 
    // @DateTimeFormat(pattern = "dd-MM-yyyy")
+  //  @Temporal(TemporalType.DATE)
     @Column(name = "dob")
-   // @Temporal(TemporalType.DATE)
     private String dob;
 
     @Column(name = "bio", nullable = true, length = 512)
     private String bio;
 
-
-    @Column(name = "createdDateTime", insertable = false, updatable = false)
+    @Column(name = "createdDateTime", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDateTime=new Date(System.currentTimeMillis());
+    private Date createdDateTime;
+
+
+    @PrePersist
+    public void onCreatedDateTime(){
+        createdDateTime=new Date();
+    }
+
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<Post> posts = new ArrayList<>();

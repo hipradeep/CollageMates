@@ -35,7 +35,5 @@ public class UserDto {
 
 	private String bio;
 
-	@NotEmpty
-	//@DateTimeFormat(pattern = "dd-MM-yyyy") //10-12-2002
 	private String dob;
 }

@@ -1,10 +1,6 @@
 package com.collegemates.controllers;
 
-import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -31,45 +27,46 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-
-/*	@RequestMapping("/")
-	public String helloGFG()
-	{
-		return "Hello Welcome";
-	}*/
-
 	// POST-create user
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@Valid  @RequestBody UserDto userDto) {
+	public ResponseEntity<ApiResponse<UserDto>> createUser(@Valid  @RequestBody UserDto userDto) throws Exception {
+		UserDto createUserDto=null;
+		try{
+			 createUserDto = this.userService.createUser(userDto);
+		}catch (Exception e){
+			return new ResponseEntity<ApiResponse<UserDto>>(new ApiResponse<>(e.getMessage(), false), HttpStatus.CREATED);
+		}
+		return new ResponseEntity<>(new ApiResponse<>("User created successfully!", true, createUserDto), HttpStatus.CREATED);
 
+	}
 
-		UserDto createUserDto = this.userService.createUser(userDto);
-		return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
-	}
-	public static LocalDateTime covertDate(String date) throws ParseException {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
-		LocalDateTime dateTime = LocalDateTime.parse(date,formatter);
-		return dateTime;
-	}
 	// PUT- update user
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") int uid) {
+	public ResponseEntity<ApiResponse> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") int uid) {
 		UserDto updateUser = this.userService.updateUser(userDto, uid);
-		return ResponseEntity.ok(updateUser);
+		//return ResponseEntity.ok(updateUser);
+		return new ResponseEntity<>(new ApiResponse<>("User updated successfully!", true, updateUser), HttpStatus.CREATED);
 	}
 
 	// DELETE -delete user
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer uid) {
 		this.userService.deleteUser(uid);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted Successfully!", true), HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted successfully!", true), HttpStatus.OK);
+
 
 	}
 
 	// GET user get
 	@GetMapping("/")
-	public ResponseEntity<List<UserDto>> getAllUsers() {
-		return ResponseEntity.ok(this.userService.getAllUsers());
+	public ResponseEntity<ApiResponse<List<UserDto>>> getAllUsers() {
+		List<UserDto> allUsers = this.userService.getAllUsers();
+
+		if (allUsers.isEmpty()){
+			return new ResponseEntity<ApiResponse<List<UserDto>>>(new ApiResponse<>("No user found", false), HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<ApiResponse<List<UserDto>>>(new ApiResponse<>("Success", true, allUsers), HttpStatus.CREATED);
+		}
 	}
 
 	// GET user get
