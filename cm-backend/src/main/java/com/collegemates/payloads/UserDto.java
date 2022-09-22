@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 public class UserDto {
 
-	private int id;
+	private Integer id;
 	@NotEmpty
 	@Size(min = 4, message = "Username must have min 4 characters")
 	private String name;

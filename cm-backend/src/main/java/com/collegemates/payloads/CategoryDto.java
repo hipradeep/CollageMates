@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CategoryDto {
+
 	private Integer categoryId;
 	@NotBlank
 	@Size(min=4, message = "Username must have min 4 dharacters")
