@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
+	UserDto registerNewUser(UserDto user);
 	UserDto createUser(UserDto user) throws Exception;
 
 	UserDto updateUser(UserDto user, Integer userId);

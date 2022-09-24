@@ -1,15 +1,15 @@
 package com.collegemates.entities;
 
-public class JwtRequest {
+public class JwtAuthRequest {
     private String username;
     private String password;
 
-    public JwtRequest(String username, String password) {
+    public JwtAuthRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public JwtRequest() {
+    public JwtAuthRequest() {
 
     }
 

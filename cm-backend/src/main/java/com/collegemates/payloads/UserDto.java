@@ -4,6 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.*;
 
+import com.collegemates.entities.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,9 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -39,6 +42,8 @@ public class UserDto {
 	private String dob;
 
 	private List<CollegeDto> colleges;
+
+	private Set<RoleDto> roles = new HashSet<>();
 
 	@Override
 	public String toString() {

@@ -1,6 +1,7 @@
 package com.collegemates.security;
 
-/*
+
+
 import com.collegemates.helper.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         } catch (Exception ex) {
             logger.error("Could not set user authentication in security context", ex);
-
         }
 
         filterChain.doFilter(request, response);
@@ -55,4 +55,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
 }
-*/
+

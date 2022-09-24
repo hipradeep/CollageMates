@@ -1,11 +1,15 @@
 package com.collegemates.controllers;
 
-/*
+
+
+import com.collegemates.exceptions.BadCredentialException;
 import com.collegemates.helper.JwtUtil;
 import com.collegemates.entities.JwtAuthResponse;
-import com.collegemates.entities.JwtRequest;
+import com.collegemates.entities.JwtAuthRequest;
+import com.collegemates.payloads.UserDto;
+import com.collegemates.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,48 +17,50 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class JwtController {
+@RequestMapping("/api/auth")
+public class JwtAuthController {
 
     @Autowired
-    private JwtUtil jwtUtil;
-
+    private JwtUtil jwtTokenHelper;
     @Autowired
     private UserDetailsService userDetailsService;
-
-     @Autowired
-    @Qualifier("authenticationManagerBean")
+    @Autowired
     AuthenticationManager authenticationManager;
+    @Autowired
+    private UserService userService;
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public ResponseEntity<JwtAuthResponse> generateToken(@RequestBody JwtRequest request) throws Exception {
-
-
+    @PostMapping("/login")
+    public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception{
         this.authentication(request.getUsername(), request.getPassword());
-        System.out.println("HI");
+
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
 
-        String token = this.jwtUtil.generateToken(userDetails);
+        String token=this.jwtTokenHelper.generateToken(userDetails);
+        JwtAuthResponse response=new JwtAuthResponse();
 
-        return ResponseEntity.ok(new JwtAuthResponse(token));
+        response.setToken(token);
+        return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
+
     }
 
     private void authentication(String username, String password) throws Exception {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 
         try {
-
             this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
         } catch (BadCredentialsException | UsernameNotFoundException e) {
-            System.out.println("Bad Credentials   !!!");
-            throw new Exception("Bad Credentials   !!");
+            throw new BadCredentialException("Bad Credentials!!");
         }
     }
+
+    //  register new user
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto) {
+        UserDto registeredUser = this.userService.registerNewUser(userDto);
+        return new ResponseEntity<UserDto>(registeredUser, HttpStatus.CREATED);
+    }
 }
-*/
+

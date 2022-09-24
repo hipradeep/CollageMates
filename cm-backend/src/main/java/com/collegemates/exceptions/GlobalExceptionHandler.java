@@ -33,4 +33,10 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<Map<String, String>>(resp, HttpStatus.BAD_REQUEST);
 
 	}
+	@ExceptionHandler(BadCredentialException.class)
+	public ResponseEntity<ApiResponse> badCredentialException(BadCredentialException ex) {
+		String message = ex.getMessage();
+		ApiResponse apiResponse = new ApiResponse(message, false);
+		return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+	}
 }

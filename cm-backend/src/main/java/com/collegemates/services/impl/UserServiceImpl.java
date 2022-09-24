@@ -3,18 +3,22 @@ package com.collegemates.services.impl;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.collegemates.config.AppConstants;
 import com.collegemates.entities.Category;
 import com.collegemates.entities.College;
+import com.collegemates.entities.Role;
 import com.collegemates.entities.User;
 import com.collegemates.exceptions.ResourceNotFoundException;
 import com.collegemates.payloads.UserDto;
 import com.collegemates.repositories.CollegeRepo;
+import com.collegemates.repositories.RoleRepo;
 import com.collegemates.repositories.UserRepo;
 import com.collegemates.services.UserService;
 import com.collegemates.utils.DateUtil;
 import org.hibernate.mapping.Collection;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -32,6 +36,28 @@ public class UserServiceImpl implements UserService {
     private CollegeRepo collegeRepo;
     @Autowired(required = true)
     private ModelMapper modelMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepo roleRepo;
+
+
+
+    @Override
+    public UserDto registerNewUser(UserDto userDto) {
+
+       User user= this.modelMapper.map(userDto, User.class);
+
+       user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+
+       //role
+        Role role = this.roleRepo.findById(AppConstants.NORMAL_USER).get();
+        user.getRoles().add(role);
+        User savedUser=this.userRepo.save(user);
+
+        return this.modelMapper.map(savedUser, UserDto.class);
+    }
 
     @Override
     public UserDto createUser(UserDto userDto) throws Exception {

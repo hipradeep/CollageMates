@@ -18,8 +18,8 @@ class CollegeMatesApplicationTests {
     @Test
     public void repoTest() {
         String className = this.userRepo.getClass().getName();
-        String packName = String.valueOf(this.userRepo.getClass().getPackage());
-        System.out.println(className);
-        System.out.println(packName);
+        Package packName = this.userRepo.getClass().getPackage();
+        System.out.println("@@@"+className);
+        //System.out.println("P  "+ packName.getName());
     }
 }

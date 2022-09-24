@@ -1,6 +1,4 @@
 package com.collegemates.config;
-/*
-*
 
 import com.collegemates.security.CustomUserDetailsService;
 import com.collegemates.security.JwtAuthenticationEntryPoint;
@@ -8,19 +6,23 @@ import com.collegemates.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-public class BasicConfiguration extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
@@ -31,10 +33,17 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        //basic authentication
+        // http.authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
+        //.httpBasic(withDefaults());
+
         http.csrf().disable().cors().disable()
                 .authorizeRequests()
-                 //allow endpoint, without token
-                .antMatchers("/**").permitAll()
+                //allow endpoint, without token
+                .antMatchers("/api/auth/**").permitAll()
+              //all get api will be access without login
+                .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
@@ -43,21 +52,18 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                 //handle exception
                 .exceptionHandling().authenticationEntryPoint(this.jwtAuthenticationEntryPoint);
 
-       http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(this.customUserDetailsService)
-        //  .passwordEncoder(passwordEncoder())
-        ;
+        auth.userDetailsService(this.customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
-        //return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -68,4 +74,3 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
 
 }
-*/
