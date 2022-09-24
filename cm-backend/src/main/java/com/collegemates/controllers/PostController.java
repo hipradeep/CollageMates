@@ -11,6 +11,7 @@ import com.collegemates.payloads.ApiResponse;
 import com.collegemates.payloads.PostDto;
 import com.collegemates.payloads.PostDto2;
 import com.collegemates.payloads.PostResponse;
+import com.collegemates.services.FileService;
 import com.collegemates.services.PostService;
 import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +38,15 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
-//	@Autowired
-//	private FileService fileService;
+	@Autowired
+	private FileService fileService;
 
-//	@Value("${project.image}")
-//	private String path;
+	@Value("${project.image}")
+	private String path;
 
 	// create post
 	@PostMapping("/user/{userId}/posts")
 	public ResponseEntity<PostDto2> createPost(@RequestBody PostDto2 postDto, @PathVariable Integer userId) {
-
-		System.out.println("**************"+postDto.toString());
 
 		PostDto2 createPostDto = this.postService.createPost(postDto, userId);
 
@@ -118,19 +117,19 @@ public class PostController {
 		return new ResponseEntity<List<PostDto>>(postsDtos, HttpStatus.OK);
 	}
 
-/*
+
 	// post image upload
 	@PostMapping("/post/image/upload/{postId}")
-	public ResponseEntity<PostDto> uploadPostImage(@RequestParam("image") MultipartFile image,
+	public ResponseEntity<PostDto2> uploadPostImage(@RequestParam("image") MultipartFile image,
 			@PathVariable Integer postId) throws IOException {
-		PostDto postDto = this.postService.getPostById(postId);
+		PostDto2 postDto = this.postService.getPostById(postId);
 
 		String fileName = this.fileService.uploadImage(path, image);
 
 		postDto.setImageName(fileName);
 
-		PostDto updatedPost = this.postService.updatePost(postDto, postId);
-		return new ResponseEntity<PostDto>(updatedPost, HttpStatus.OK);
+		PostDto2 updatedPost = this.postService.updatePost(postDto, postId);
+		return new ResponseEntity<PostDto2>(updatedPost, HttpStatus.OK);
 
 	}
 
@@ -142,6 +141,6 @@ public class PostController {
 		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
 		StreamUtils.copy(resource, response.getOutputStream());
 	}
-*/
+
 
 }
