@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -36,4 +37,20 @@ public class UserDto {
 	private String bio;
 
 	private String dob;
+
+	private List<CollegeDto> colleges;
+
+	@Override
+	public String toString() {
+		return "UserDto{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", userType='" + userType + '\'' +
+				", bio='" + bio + '\'' +
+				", dob='" + dob + '\'' +
+				", collegeDtos=" + colleges +
+				'}';
+	}
 }

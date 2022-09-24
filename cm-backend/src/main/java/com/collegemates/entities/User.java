@@ -4,6 +4,7 @@ package com.collegemates.entities;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.*;
@@ -52,6 +53,13 @@ public class User
     @Column(name = "createdDateTime", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDateTime;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_college_table",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "college_id")
+    )
+    private List<College> colleges;
 
 
     @PrePersist

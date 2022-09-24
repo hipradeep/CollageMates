@@ -3,9 +3,12 @@ package com.collegemates.services.impl;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.collegemates.entities.Category;
+import com.collegemates.entities.College;
 import com.collegemates.entities.User;
 import com.collegemates.exceptions.ResourceNotFoundException;
 import com.collegemates.payloads.UserDto;
+import com.collegemates.repositories.CollegeRepo;
 import com.collegemates.repositories.UserRepo;
 import com.collegemates.services.UserService;
 import com.collegemates.utils.DateUtil;
@@ -24,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private CollegeRepo collegeRepo;
     @Autowired(required = true)
     private ModelMapper modelMapper;
 
@@ -82,6 +88,21 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User", " Id ", userId));
         this.userRepo.delete(user);
 
+    }
+
+    @Override
+    public UserDto updateUserCollege( int uid, int cid) {
+        User user = this.userRepo.findById(uid).orElseThrow(() -> new ResourceNotFoundException("User", "Id ", uid));
+        College collegeWithCid = this.collegeRepo.findById(cid).orElseThrow(() -> new ResourceNotFoundException("College", "Id ", cid));
+        List<College> allCollages = new ArrayList<>();
+
+        allCollages.add(collegeWithCid);
+
+        allCollages.addAll(user.getColleges());
+
+        user.setColleges(allCollages);
+        User updatedUser = this.userRepo.save(user);
+        return this.modelMapper.map(updatedUser, UserDto.class);
     }
 
     public User dtoToUser(UserDto userDto) {

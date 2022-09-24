@@ -30,6 +30,8 @@ public class UserController {
 	// POST-create user
 	@PostMapping("/")
 	public ResponseEntity<ApiResponse<UserDto>> createUser(@Valid  @RequestBody UserDto userDto) throws Exception {
+
+
 		UserDto createUserDto=null;
 		try{
 			 createUserDto = this.userService.createUser(userDto);
@@ -73,4 +75,25 @@ public class UserController {
 	public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer userId) {
 		return ResponseEntity.ok(this.userService.getUserById(userId));
 	}
+
+
+
+	/*USER COLLEGE */
+	@PutMapping("/{userId}/college/{collegeId}")
+	public ResponseEntity<ApiResponse> updateUserCollege(@Valid
+														 @PathVariable("userId") int uid,
+														 @PathVariable("collegeId") int cid
+
+														 ) {
+		UserDto updateUser = this.userService.updateUserCollege( uid, cid);
+		//return ResponseEntity.ok(updateUser);
+		return new ResponseEntity<>(new ApiResponse<>("User updated successfully!", true, updateUser), HttpStatus.CREATED);
+	}
+
+
+
+
+
+
+
 }

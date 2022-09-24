@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.collegemates.config.AppConstants;
 import com.collegemates.payloads.ApiResponse;
 import com.collegemates.payloads.PostDto;
+import com.collegemates.payloads.PostDto2;
 import com.collegemates.payloads.PostResponse;
 import com.collegemates.services.PostService;
 import org.hibernate.engine.jdbc.StreamUtils;
@@ -39,17 +40,18 @@ public class PostController {
 //	@Autowired
 //	private FileService fileService;
 
-	@Value("${project.image}")
-	private String path;
+//	@Value("${project.image}")
+//	private String path;
 
 	// create post
-	@PostMapping("/user/{userId}/category/{categoryId}/posts")
-	public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto, @PathVariable Integer userId,
-											  @PathVariable Integer categoryId) {
+	@PostMapping("/user/{userId}/posts")
+	public ResponseEntity<PostDto2> createPost(@RequestBody PostDto2 postDto, @PathVariable Integer userId) {
 
-		PostDto createPostDto = this.postService.createPost(postDto, userId, categoryId);
+		System.out.println("**************"+postDto.toString());
 
-		return new ResponseEntity<PostDto>(createPostDto, HttpStatus.CREATED);
+		PostDto2 createPostDto = this.postService.createPost(postDto, userId);
+
+		return new ResponseEntity<PostDto2>(createPostDto, HttpStatus.CREATED);
 
 	}
 
@@ -85,9 +87,9 @@ public class PostController {
 
 	// get post by post id
 	@GetMapping("/posts/{postId}")
-	public ResponseEntity<PostDto> getPostbyId(@PathVariable Integer postId) {
-		PostDto postDto = this.postService.getPostById(postId);
-		return new ResponseEntity<PostDto>(postDto, HttpStatus.OK);
+	public ResponseEntity<PostDto2> getPostbyId(@PathVariable Integer postId) {
+		PostDto2 postDto = this.postService.getPostById(postId);
+		return new ResponseEntity<PostDto2>(postDto, HttpStatus.OK);
 
 	}
 
@@ -100,9 +102,11 @@ public class PostController {
 
 	// update post
 	@PutMapping("/posts/{postId}")
-	public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable Integer postId) {
-		PostDto updatedPost = this.postService.updatePost(postDto, postId);
-		return new ResponseEntity<PostDto>(updatedPost, HttpStatus.OK);
+	public ResponseEntity<PostDto2> updatePost(@RequestBody PostDto2 postDto, @PathVariable Integer postId) {
+		System.out.println("**************"+postDto.toString());
+		PostDto2 updatedPost = this.postService.updatePost(postDto, postId);
+
+		return new ResponseEntity<PostDto2>(updatedPost, HttpStatus.OK);
 	}
 
 	// search post

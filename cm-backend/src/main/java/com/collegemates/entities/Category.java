@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
-@Table(name = "post_categories")
+@Table(name = "categories")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -19,4 +22,8 @@ public class Category {
 	private String categoryTitle;
 	@Column(name = "description")
 	private String categoryDescription;
+
+	@ManyToMany(mappedBy = "categories")
+	private List<Post> posts;
+
 }
