@@ -40,11 +40,11 @@ public class CollegeMatesApplication implements CommandLineRunner {
         try {
             Role r = new Role();
             r.setId(AppConstants.ADMIN_USER);
-            r.setName("ADMIN_USER");
+            r.setName("ROLE_ADMIN");
 
             Role r2 = new Role();
             r2.setId(AppConstants.NORMAL_USER);
-            r2.setName("NORMAL_USER");
+            r2.setName("ROLE_NORMAL");
 
             List<Role> roles = new ArrayList<>();
             roles.add(r);

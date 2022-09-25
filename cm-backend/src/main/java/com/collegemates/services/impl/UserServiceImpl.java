@@ -42,8 +42,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepo roleRepo;
 
-
-
     @Override
     public UserDto registerNewUser(UserDto userDto) {
 
@@ -69,13 +67,13 @@ public class UserServiceImpl implements UserService {
 //        System.out.println(userDto.getDob());
 //        user.setCreatedDateTime(DateUtil.formatDate(userDto.getDob()));
 //        System.out.println(user.getDob());
+
         User savedUser = null;
         if (user.isPresent()){
             throw new Exception("User already exits");
         }else {
             savedUser = this.userRepo.save(user1);
         }
-
         return this.userToDto(savedUser);
     }
 
@@ -104,7 +102,6 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getAllUsers() {
         List<User> users = this.userRepo.findAll();
         List<UserDto> userDtos = users.stream().map(user -> this.userToDto(user)).collect(Collectors.toList());
-
         return userDtos;
     }
 

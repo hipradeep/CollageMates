@@ -18,12 +18,21 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+    public static final String[] PUBLIC_URLS = {
+            "/api/auth/**",
+            "/v3/api-docs",
+            "/v2/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/***"
+    };
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
     @Autowired
@@ -38,17 +47,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // http.authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
         //.httpBasic(withDefaults());
 
-        http.csrf().disable().cors().disable()
-                .authorizeRequests()
+        http.csrf().disable().cors().disable().authorizeRequests()
                 //allow endpoint, without token
-                .antMatchers("/api/auth/**").permitAll()
-              //all get api will be access without login
-                .antMatchers(HttpMethod.GET).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .antMatchers(PUBLIC_URLS).permitAll()
+                //all get api will be access without login
+                .antMatchers(HttpMethod.GET).permitAll().anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 //handle exception
                 .exceptionHandling().authenticationEntryPoint(this.jwtAuthenticationEntryPoint);
 

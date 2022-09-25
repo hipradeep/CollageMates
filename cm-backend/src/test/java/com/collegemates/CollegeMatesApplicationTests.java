@@ -19,7 +19,7 @@ class CollegeMatesApplicationTests {
     public void repoTest() {
         String className = this.userRepo.getClass().getName();
         Package packName = this.userRepo.getClass().getPackage();
-        System.out.println("@@@"+className);
+      //  System.out.println("@@@"+className);
         //System.out.println("P  "+ packName.getName());
     }
 }
