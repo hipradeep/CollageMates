@@ -6,6 +6,7 @@ import com.collegemates.exceptions.BadCredentialException;
 import com.collegemates.helper.JwtUtil;
 import com.collegemates.entities.JwtAuthResponse;
 import com.collegemates.entities.JwtAuthRequest;
+import com.collegemates.payloads.ApiResponse;
 import com.collegemates.payloads.UserDto;
 import com.collegemates.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,17 @@ public class JwtAuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception{
+    public ResponseEntity<JwtAuthResponse<String>> createToken(@RequestBody JwtAuthRequest request) throws Exception {
         this.authentication(request.getUsername(), request.getPassword());
 
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
 
         String token=this.jwtTokenHelper.generateToken(userDetails);
-        JwtAuthResponse response=new JwtAuthResponse();
+        JwtAuthResponse<String> response=new JwtAuthResponse<String>();
 
         response.setToken(token);
-        return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
+
+        return new ResponseEntity<>(new JwtAuthResponse<>("Login successfully!", true, token), HttpStatus.CREATED);
 
     }
 

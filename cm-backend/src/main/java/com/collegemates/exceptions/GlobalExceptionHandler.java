@@ -37,6 +37,6 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ApiResponse> badCredentialException(BadCredentialException ex) {
 		String message = ex.getMessage();
 		ApiResponse apiResponse = new ApiResponse(message, false);
-		return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
 	}
 }
