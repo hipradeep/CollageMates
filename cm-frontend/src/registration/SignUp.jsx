@@ -1,7 +1,44 @@
 import React from 'react'
+import { useState } from "react";
 import { Link } from 'react-router-dom'
-
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import api from "../api/api";
 export default function SignUp() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [dob, setDob] = useState("");
+  const [userType, setUserType] = useState("student");
+  const [disabled, setDisabled] = useState(false);
+
+
+
+  async function postData() {
+    setDisabled(true)
+    const registerData = {
+      name: fullName, password, email, userType, dob,
+    }
+    try {
+      const res = await api.post("/auth/register", registerData)
+        .then(res => {
+          console.log(res)
+
+          setDisabled(false)
+
+        })
+        .catch(err => console.log('Login: ', err));
+    } catch (error) {
+      console.log(error)
+      setDisabled(false)
+    }
+  }
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log(JSON.stringify({ email, password, fullName, dob, userType }))
+    postData();
+  }
+
   return (
     <div className='row'>
 
@@ -10,55 +47,61 @@ export default function SignUp() {
 
 
           <h2>SignUp</h2>
-          <form className='pt-3 mb-3'>
+          <form className='pt-3 mb-3' onSubmit={submitForm}>
 
-            <div class="mb-3">
-              <label for="username" class="form-label">Full Name</label>
-              <input type="text" class="form-control rounded-1" id="username" placeholder="Enter your name" />
+            <div className="mb-3">
+              <label htmlFor="fullName" className="form-label">Full Name</label>
+              <input type="text" className="form-control rounded-1" id="fullName" placeholder="Enter your name"
+                value={fullName} disabled={disabled} required
+                onChange={(e) => setFullName(e.target.value)}
+              />
             </div>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control rounded-1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email" />
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email address</label>
+              <input type="email" className="form-control rounded-1" id="email" aria-describedby="emailHelp" placeholder="Enter your email"
+                value={email} disabled={disabled} required
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <div class="mb-3">
-              <label for="dob" class="form-label">Date of birth</label>
-              <input type="date" class="form-control rounded-1" id="dob" placeholder="Enter your name" />
+            <div className="mb-3">
+              <label htmlFor="dob" className="form-label">Date of birth</label>
+              <input type="date" className="form-control rounded-1" id="dob" min="01-01-1950" max={new Date().toLocaleDateString('en-ca')}
+                value={dob} disabled={disabled} required
+                onChange={(e) => setDob(e.target.value)}
+              />
             </div>
 
-            {/* <div class="mb-3">
-              <label for="college" class="form-label">Colleges</label>
-              <select className="form-select rounded-1" name="colleges" id="college">
-                <option value="" disabled selected>Select your college</option>
-                <option value="javascript">JavaScript</option>
-                <option value="php">PHP</option>
-                <option value="java">Java</option>
-                <option value="golang">Golang</option>
-                <option value="python">Python</option>
-                <option value="c#">C#</option>
-                <option value="C++">C++</option>
-                <option value="erlang">Erlang</option>
-              </select>
-            </div> */}
             <div className='mb-3 userType '>
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Student
-                </label>
-        
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Teacher
-                </label>
-          
+              <input className="form-check-input" type="radio" name="userType" id="rStudent" checked
+                value={"student"} disabled={disabled} required
+                onChange={(e) => setUserType(e.target.value)}
+              />
+              <label className="form-check-label" htmlFor="rStudent">
+                Student
+              </label>
+
+              <input className="form-check-input" type="radio" name="userType" id="rTeacher"
+                value={"teacher"} disabled={disabled} required
+                onChange={(e) => setUserType(e.target.value)}
+              />
+              <label className="form-check-label" htmlFor="rTeacher">
+                Teacher
+              </label>
+
             </div>
 
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control rounded-1" id="exampleInputPassword1" placeholder="Enter password" />
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input type="password" className="form-control rounded-1" id="password" placeholder="Enter password"
+
+                value={password} minLength={3} disabled={disabled} required
+                onChange={(e) => setPassword(e.target.value)}
+
+              />
             </div>
 
-            <button type="submit" class="btn btn-primary rounded-1  w-100">SignUp</button>
+            <button type="submit" className="btn btn-primary rounded-1  w-100">{disabled ? < AiOutlineLoading3Quarters /> : ""} SignUp</button>
           </form>
           <div className='row mb-3' >
             <div className=''>You already havean account? <Link to="/login">Login</Link> </div>

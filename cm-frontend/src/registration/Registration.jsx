@@ -9,7 +9,7 @@ export default function Registration() {
       <div className='container-fluid'>
         <div className="row">
 
-          <div className="col">
+          <div className="col w-100">
 
             <div className='bgImage' >
               {/* <img src="./login-page-img.svg" alt="BigCo Inc. logo" /> */}

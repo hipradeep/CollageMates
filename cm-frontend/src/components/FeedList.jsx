@@ -6,23 +6,23 @@ export default function FeedList() {
     const myList = ['Peter', 'Sachin', 'Kevin', 'Dhoni', 'Alisa', 'Sachin', 'Kevin', 'Dhoni', 'Alisa', 'Sachin', 'Kevin', 'Dhoni', 'Alisa'];
 
 
-    const listItems = myList.map((myList) => {
+    const listItems = myList.map((myListq, i) => {
 
 
-        return <li>
+        return <li key={i}>
 
             {/* {myList} */}
 
             <div className="row ">
                 <div className="col-1 ">
                     <div className="box">
-                        <img class="card-img-top picture" src={require('../avatar.jpg')} alt="BigCo Inc. logo" />
+                        <img className="card-img-top picture" src={require('../avatar.jpg')} alt="BigCo Inc. logo" />
                     </div>
                 </div>
                 <div className="col-11">
                     <div className="mx-3">
                         <div className='feedHeading'>
-                            {myList}
+                            {myListq}
                         </div>
                         <div className='feedSubHeading'>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore quam eum, consequatur nesciunt quae, aspernatur corrupti suscipit quo accusantium hic ad sapiente pariatur nisi totam praesentium! Reiciendis ipsum alias quidem.

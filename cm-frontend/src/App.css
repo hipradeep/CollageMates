@@ -22,10 +22,9 @@
 }
 
 .bgImage{
-  background-image: 
-  url("./login-page-img.svg");
+  background-image:  url("./login-page-img.svg");
   background-size: "cover";
-  height: 100vh;
+  height: 100%;
   margin-top: -70px;
   font-size:50px;
   background-repeat:no-repeat; 
@@ -57,7 +56,6 @@ ul {
   pointer-events: none;
 }
 .btn-primary{
-
   background-color: #72B8F9 !important;
 }
  .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
@@ -83,6 +81,9 @@ ul {
  height:110px;
 
 }
+.joinBtn{
+  height: 30px;
+}
 
 .feedHeading{
 font-size: 16px;
@@ -102,6 +103,9 @@ font-size: 14px;
 }
 .editBtn:hover{
   color: #51abff;
+}
+.trp{
+  background: transparent;
 }
 
 @media (prefers-reduced-motion: no-preference) {
