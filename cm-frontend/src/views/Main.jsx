@@ -5,7 +5,6 @@ import ForgotPassword from '../registration/ForgotPassword';
 import Login from '../registration/Login';
 import Registration from '../registration/Registration';
 import SignUp from '../registration/SignUp';
-import Home from './Home';
 import DashBoard from './DashBoard';
 export default function Main() {
   return (
@@ -20,10 +19,9 @@ export default function Main() {
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
             <Route path="forgotpassword" element={<ForgotPassword />} />
-            <Route path="*" element={<NoPage />} />
           </Route>
           <Route path="home/*" element={<DashBoard />} />
-
+          <Route path="*" element={<NoPage/>} />
         </Routes>
 
       </BrowserRouter>

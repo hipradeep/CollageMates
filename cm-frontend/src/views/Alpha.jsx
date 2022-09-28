@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route, Outlet} from 'react-router-dom'
-import Profile2 from './Profile2'
+import Profile2 from './Profile'
 import UpdateProfile from './UpdateProfile'
 
 export default function Alpha() {

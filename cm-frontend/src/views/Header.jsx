@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 export default function Header() {
     return (
-        <>
+        <div>
             <nav className="navbar navbar-expand mt-3">
                 <div className="col-3">
                     <div className='text-start   '>
@@ -15,7 +15,7 @@ export default function Header() {
                     <div className="collapse navbar-collapse  " id="navbarText">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link to="home"><div className='nav-link active'>Home</div></Link>
+                                <Link to=""><div className='nav-link active'>Home</div></Link>
                              
                             </li>
                             <li className="nav-item">
@@ -37,7 +37,9 @@ export default function Header() {
                 </div>
 
             </nav>
+            <hr className='mx-3'/>
+            <Outlet />
 
-        </>
+        </div>
     )
 }

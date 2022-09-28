@@ -1,110 +1,145 @@
 .App {
   text-align: center;
 }
+
 .main {
   margin: 0;
   padding: 0;
 }
-.bg{
+
+.bg {
   background-color: gray;
 }
-.bg2{
+
+.bg2 {
   background-color: lightblue;
 }
-.bg3{
+
+.bg3 {
   background-color: papayawhip;
 }
-.homePageImage{
-  padding:0 ;
+
+.homePageImage {
+  padding: 0;
   margin: -12px;
   height: 60%;
   width: 60%;
 }
 
-.bgImage{
-  background-image:  url("./login-page-img.svg");
+.bgImage {
+  background-image: url("./login-page-img.svg");
   background-size: "cover";
   height: 100%;
   margin-top: -70px;
-  font-size:50px;
-  background-repeat:no-repeat; 
-  padding:0 ;
+  font-size: 50px;
+  background-repeat: no-repeat;
+  padding: 0;
   margin: -12px;
 }
 
-.title{
+.title {
   box-shadow: 6px 6px #72B8F9;
   display: inline-block;
 }
-.cardw{
+
+.cardw {
   width: 100%;
 }
 
 
-.loginForm{
-
-  padding-top:100px ;
+.loginForm {
+  padding-top: 100px;
   width: 50%;
 }
 
-ul, li { margin-left: 0; padding-left: 0; }
-ul {
-  list-style:none;
+.updateForm {
+  width: 80%;
 }
+
+ul,
+li {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ul {
+  list-style: none;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-.btn-primary{
+
+.btn-primary {
   background-color: #72B8F9 !important;
 }
- .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
   background-color: #51abff !important;
- }
-.btn-primary:active, .btn-primary:visited {
+}
+
+.btn-primary:active,
+.btn-primary:visited {
   background-color: #51abff !important;
- }
+}
 
-.userType > label{
- margin-left: 5px;
- margin-right: 15px;
+.userType>label {
+  margin-left: 5px;
+  margin-right: 15px;
 }
 
 
-.box{
- width: 75px;
- height:75px;
+.box {
+  width: 75px;
+  height: 75px;
 
 }
-.avatar{
- width: 110px;
- height:110px;
+
+.avatar {
+  width: 110px;
+  height: 110px;
 
 }
-.joinBtn{
+
+.circuler-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+ 
+}
+
+.joinBtn {
   height: 30px;
 }
 
-.feedHeading{
-font-size: 16px;
+.feedHeading {
+  font-size: 16px;
 }
-.feedSubHeading{
-font-size: 14px;
+
+.feedSubHeading {
+  font-size: 14px;
 }
-.postCreateBtn{
+
+.postCreateBtn {
   width: 180px;
 }
 
-.ts-small{
+.ts-small {
   font-size: 12px;
 }
-.editBtn{
+
+.editBtn {
   width: 100px;
 }
-.editBtn:hover{
+
+.editBtn:hover {
   color: #51abff;
 }
-.trp{
+
+.trp {
   background: transparent;
 }
 
@@ -133,7 +168,9 @@ font-size: 14px;
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+  
