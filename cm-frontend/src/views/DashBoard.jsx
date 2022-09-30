@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import Profile2 from "./Profile2";
 import Profile3 from "./Profile3";
 import NoPage2 from "../error/NoPage2";
+import AboutUs from "./AboutUs";
 export default function DashBoard() {
   return (
     <div className="container px-5">
@@ -18,6 +19,7 @@ export default function DashBoard() {
           <Route path="profile" element={<Profile />} />
           <Route path="profile2" element={<Profile2 />} />
           <Route path="profile3" element={<Profile3 />} />
+          <Route path="about" element={<AboutUs />} />
           <Route path="*" element={<NoPage2 />} />
         </Route>
       </Routes>
