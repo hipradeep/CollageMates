@@ -19,14 +19,14 @@ export default function Header() {
                 </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/about">
+                <Link class="nav-link" to="about">
                   About Us
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Option 2
-                </a>
+                <Link class="nav-link" to="contact">
+                  Contact Us
+                </Link>
               </li>
             </ul>
             <form class="d-flex" role="search">
