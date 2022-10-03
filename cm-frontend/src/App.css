@@ -108,7 +108,21 @@ ul {
   width: 160px;
   height: 160px;
   border-radius: 12px;
- 
+
+}
+
+
+.circuler-img2 {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+
+}
+.circuler-img3 {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+
 }
 
 .joinBtn {
@@ -172,5 +186,13 @@ ul {
   to {
     transform: rotate(360deg);
   }
+}
+
+.center {
+  margin: auto;
+  width: 80%;
+  height: 200px;
+ 
+  padding: 10px;
 }
   

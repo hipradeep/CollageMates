@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import api from "../api/api";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +12,10 @@ export default function SignUp() {
   const [userType, setUserType] = useState("student");
   const [disabled, setDisabled] = useState(false);
 
-
+  let history = useNavigate();
+  function handleClick() {
+    history("/login");
+  }
 
   async function postData() {
     setDisabled(true)
@@ -22,8 +26,8 @@ export default function SignUp() {
       const res = await api.post("/auth/register", registerData)
         .then(res => {
           console.log(res)
-
           setDisabled(false)
+          handleClick()
 
         })
         .catch(err => console.log('Login: ', err));
@@ -37,6 +41,7 @@ export default function SignUp() {
     e.preventDefault();
     console.log(JSON.stringify({ email, password, fullName, dob, userType }))
     postData();
+    
   }
 
   return (
@@ -51,14 +56,14 @@ export default function SignUp() {
 
             <div className="mb-3">
               <label htmlFor="fullName" className="form-label">Full Name</label>
-              <input type="text" className="form-control rounded-1" id="fullName" placeholder="Enter your name"
+              <input type="text" className="form-control rounded-1" id="fullName" placeholder="Enter your name" autoComplete='off'
                 value={fullName} disabled={disabled} required
                 onChange={(e) => setFullName(e.target.value)}
               />
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email address</label>
-              <input type="email" className="form-control rounded-1" id="email" aria-describedby="emailHelp" placeholder="Enter your email"
+              <input type="email" className="form-control rounded-1" id="email" aria-describedby="emailHelp" placeholder="Enter your email" autoComplete='off'
                 value={email} disabled={disabled} required
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -93,7 +98,7 @@ export default function SignUp() {
 
             <div className="mb-3">
               <label htmlFor="password" className="form-label">Password</label>
-              <input type="password" className="form-control rounded-1" id="password" placeholder="Enter password"
+              <input type="password" className="form-control rounded-1" id="password" placeholder="Enter password" autoComplete='off'
 
                 value={password} minLength={3} disabled={disabled} required
                 onChange={(e) => setPassword(e.target.value)}

@@ -18,16 +18,12 @@ export default function ProfilePage() {
              <Route index element={<Profile />}/>
              <Route  path="" element={<Profile />}/>
              <Route path="setting" element={<Setting />} />
-             
              <Route path="*" element={<NoPage />} />
 
              
           </Route>
           <Route path="updateprofile" element={<UpdateProfile />}/>
         </Routes>
-
-
-
 
 
     </div >

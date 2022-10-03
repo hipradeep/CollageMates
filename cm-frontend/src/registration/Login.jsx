@@ -10,6 +10,9 @@ export default function Login() {
   const [disabled, setDisabled] = useState(false)
   const navigate = useNavigate();
 
+
+  
+
   async function postData() {
     setDisabled(true)
     const loginData = {
@@ -23,6 +26,14 @@ export default function Login() {
             if (res.data.status) {
               //saving token in local storage
               localStorage.setItem('token', res.data.token)
+              localStorage.setItem('userId', res.data.user.id)
+              localStorage.setItem('user_profile_name', res.data.user.name)
+              localStorage.setItem('user_address', res.data.user.address)
+              localStorage.setItem('user_bio', res.data.user.bio)
+              localStorage.setItem('profile_url', res.data.user.profileUrl)
+              localStorage.setItem('email', res.data.user.email)
+              localStorage.setItem('dob', res.data.user.dob)
+              localStorage.setItem('user_type', res.data.user.userType)
               //go to home page
              navigate(`/home`);
             } else {
@@ -32,12 +43,12 @@ export default function Login() {
         })
         .catch(err => {
           console.log('Login: ', err)
-          alert(err.data.message)
+          alert("Something went wrong")
         }).finally(()=>{
           setDisabled(false)
         });
     } catch (error) {
-      console.log(error)
+      console.log("&&&"+error)
       setDisabled(false)
     }
   }
