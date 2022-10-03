@@ -24,14 +24,5 @@ public class CategoryDto2 {
 	@Size(min=12, message = "Username must have min 12 dharacters")
 	private String categoryDescription;
 
-	//private List<Post> posts;
 
-	@Override
-	public String toString() {
-		return "CategoryDto2{" +
-				"categoryId=" + categoryId +
-				", categoryTitle='" + categoryTitle + '\'' +
-				", categoryDescription='" + categoryDescription + '\'' +
-				'}';
-	}
 }

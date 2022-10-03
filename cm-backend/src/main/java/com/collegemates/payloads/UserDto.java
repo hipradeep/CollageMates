@@ -1,5 +1,7 @@
 package com.collegemates.payloads;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.*;
@@ -39,7 +41,10 @@ public class UserDto {
 
 	private String bio;
 
-	private String dob;
+	@Temporal(TemporalType.DATE)
+	private Date dob;
+
+	private String address;
 
 	private List<CollegeDto> colleges;
 

@@ -37,6 +37,7 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private CategoryRepo categoryRepo;
 
+    //not in use
     @Override
     public PostDto2 createPost(PostDto2 postDto, Integer userId) {
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id ", userId));
@@ -52,7 +53,7 @@ public class PostServiceImpl implements PostService {
 
         System.out.println("%%%%%%%%%%%%%%%%"+ Collections.singletonList(c1.toString()));
 
-        post.setCategories(c1);
+       // post.setCategories(c1);
         post.setImageName("default.png");
         post.setAddedDate(new Date());
         post.setUser(user);
@@ -62,16 +63,31 @@ public class PostServiceImpl implements PostService {
         return this.modelMapper.map(newPost, PostDto2.class);
     }
 
+    @Override
+    public PostCreatedDto createPost2(PostDto postDto, Integer userId, Integer catId) {
+
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id ", userId));
+        Category category = this.categoryRepo.findById(catId).orElseThrow(() -> new ResourceNotFoundException("Category", "Id ", catId));
+
+        Post post = this.modelMapper.map(postDto, Post.class);
+        post.setUser(user);
+        post.setCategory(category);
+        post.setAddedDate(new Date());
+        Post newPost = this.postRepo.save(post);
+
+        return this.modelMapper.map(newPost, PostCreatedDto.class);
+    }
+
 
     @Override
-    public PostDto2 updatePost(PostDto2 postDto, Integer postId) {
+    public PostDto2 updatePost(PostDto3 postDto, Integer postId) {
         Post post = this.postRepo.findById(postId) .orElseThrow(() -> new ResourceNotFoundException("Post ", "id", postId));
         List<Category> c1 = new ArrayList<>();
-        for (CategoryDto2 c : postDto.getCategories()) {
-            Category category = this.categoryRepo.findById(c.getCategoryId()).orElseThrow(() -> new ResourceNotFoundException("Category", "Id ", c.getCategoryId()));
-            // Category category1 = this.modelMapper.map(category, Category.class);
-            c1.add(category);
-        }
+//        for (CategoryDto2 c : postDto.getCategories()) {
+//            Category category = this.categoryRepo.findById(c.getCategoryId()).orElseThrow(() -> new ResourceNotFoundException("Category", "Id ", c.getCategoryId()));
+//            // Category category1 = this.modelMapper.map(category, Category.class);
+//            c1.add(category);
+//        }
 
         //c1.addAll(post.getCategories());
 
@@ -79,7 +95,7 @@ public class PostServiceImpl implements PostService {
         post.setContent(postDto.getContent());
         post.setImageName(postDto.getImageName());
 
-        post.setCategories(c1);
+       // post.setCategories(c1);
         Post updatedPost = this.postRepo.save(post);
         return this.modelMapper.map(updatedPost, PostDto2.class);
     }
@@ -96,7 +112,7 @@ public class PostServiceImpl implements PostService {
     public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
 
         Sort sort = null;
-        if (sortDir.equalsIgnoreCase("asc")) {
+        if (sortDir.equalsIgnoreCase("desc")) {
             sort = Sort.by(sortBy).ascending();
         } else {
             sort = Sort.by(sortBy).descending();
@@ -107,7 +123,7 @@ public class PostServiceImpl implements PostService {
         List<Post> allPosts = pagePost.getContent();
 
         // List<Post> allPosts = this.postRepo.findAll();
-        List<PostDto> postDtos = allPosts.stream().map((post) -> this.modelMapper.map(post, PostDto.class))
+        List<PostDto3> postDtos = allPosts.stream().map((post) -> this.modelMapper.map(post, PostDto3.class))
                 .collect(Collectors.toList());
 
         PostResponse postResponse = new PostResponse();
@@ -121,10 +137,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto2 getPostById(Integer postId) {
-        Post post = this.postRepo.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException("Post", "Id ", postId));
-        return this.modelMapper.map(post, PostDto2.class);
+    public PostDto3 getPostById(Integer postId) {
+        Post post = this.postRepo.findById(postId)   .orElseThrow(() -> new ResourceNotFoundException("Post", "Id ", postId));
+        return this.modelMapper.map(post, PostDto3.class);
     }
 
     @Override

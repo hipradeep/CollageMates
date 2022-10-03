@@ -1,13 +1,11 @@
 package com.collegemates.entities;
 
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,11 +37,18 @@ public class User implements UserDetails {
 
     // @DateTimeFormat(pattern = "dd-MM-yyyy")
     //  @Temporal(TemporalType.DATE)
-    @Column(name = "dob")
-    private String dob;
+    @Column(name = "dateOfBirth")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+
+    @Column(name = "profile_url")
+    private String profileUrl;
 
     @Column(name = "bio", nullable = true, length = 512)
     private String bio;
+
+    @Column(name = "address", nullable = true, length = 512)
+    private String address;
 
     @Column(name = "createdDateTime", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -76,6 +81,12 @@ public class User implements UserDetails {
                 .map((role) -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
         return authorities;
     }
+
+    @OneToMany(mappedBy="to")
+    private List<Followers> followers;
+
+    @OneToMany(mappedBy="from")
+    private List<Followers> following;
 
     @Override
     public String getUsername() {

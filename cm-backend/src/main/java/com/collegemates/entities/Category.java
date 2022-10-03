@@ -23,7 +23,8 @@ public class Category {
 	@Column(name = "description")
 	private String categoryDescription;
 
-	@ManyToMany(mappedBy = "categories")
-	private List<Post> posts;
+
+//	@ManyToMany(mappedBy = "categories")
+//	private List<Post> posts;
 
 }

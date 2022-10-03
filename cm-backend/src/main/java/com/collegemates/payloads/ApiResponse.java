@@ -17,6 +17,7 @@ public class ApiResponse<T> {
 	private boolean status;
 	private T data;
 
+
 	public ApiResponse(String message, boolean status) {
 		this.message = message;
 		this.status = status;

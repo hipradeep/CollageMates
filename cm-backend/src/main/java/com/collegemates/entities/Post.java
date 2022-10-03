@@ -33,17 +33,21 @@ public class Post {
     private String content;
 
     private String imageName;
+
+
     private Date addedDate;
 
-    //	@ManyToOne
-//	@JoinColumn(name = "category_id")
-//	private Category category;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "post_categories_table",
-            joinColumns = @JoinColumn(name = "post_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+    @ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+
+
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "post_categories_table",
+//            joinColumns = @JoinColumn(name = "post_id"),
+//            inverseJoinColumns = @JoinColumn(name = "category_id")
+//    )
+//    private List<Category> categories;
 
 
     @ManyToOne
@@ -53,5 +57,8 @@ public class Post {
 //	private Set<Comment> comments =new HashSet<>();
 
 
-
+    @PrePersist
+    public void onCreatedDateTime() {
+        addedDate = new Date();
+    }
 }

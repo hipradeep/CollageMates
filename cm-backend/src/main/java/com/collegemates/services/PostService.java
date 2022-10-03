@@ -2,18 +2,18 @@ package com.collegemates.services;
 
 
 
-import com.collegemates.payloads.PostDto;
-import com.collegemates.payloads.PostDto2;
-import com.collegemates.payloads.PostResponse;
+import com.collegemates.payloads.*;
 
 import java.util.List;
 
 public interface PostService {
 	// create
 	PostDto2 createPost(PostDto2 postDto, Integer userId);
+	PostCreatedDto createPost2(PostDto postDto, Integer userI, Integer catID);
+
 
 	// update
-	PostDto2 updatePost(PostDto2 postDto, Integer postId);
+	PostDto2 updatePost(PostDto3 postDto, Integer postId);
 
 	// delete
 	void deletePost(Integer postId);
@@ -22,7 +22,7 @@ public interface PostService {
 	PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
 	// get single post
-	PostDto2 getPostById(Integer postId);
+	PostDto3 getPostById(Integer postId);
 
 	// get all posts by category
 	List<PostDto> getPostsByCategory(Integer categoryId);

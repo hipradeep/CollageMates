@@ -1,15 +1,20 @@
 package com.collegemates.services.impl;
 
 import com.collegemates.entities.College;
+import com.collegemates.entities.Post;
 import com.collegemates.entities.User;
 import com.collegemates.exceptions.ResourceNotFoundException;
 import com.collegemates.payloads.CollegeDto;
+import com.collegemates.payloads.PostDto;
 import com.collegemates.repositories.CollegeRepo;
 import com.collegemates.repositories.UserRepo;
 import com.collegemates.services.CollegeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CollegeServiceImpl implements CollegeService {
@@ -59,4 +64,17 @@ public class CollegeServiceImpl implements CollegeService {
                 .orElseThrow(() -> new ResourceNotFoundException("College", " Id ", collegeId));
         return  this.modelMapper.map(college, CollegeDto.class);
     }
+
+    @Override
+    public List<CollegeDto> getCollegeByName(String collegeName) {
+
+        List<College> colleges = this.collegeRepo.searchByName(collegeName);
+        List<CollegeDto> collegeDtos = colleges.stream().map((college) -> this.modelMapper.map(college, CollegeDto.class))
+                .collect(Collectors.toList());
+        return collegeDtos;
+
+    }
+
+
+
 }

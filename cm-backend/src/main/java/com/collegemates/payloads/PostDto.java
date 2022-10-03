@@ -21,11 +21,15 @@ public class PostDto {
 	private String title;
 	@NotBlank
 	private String content;
+
 	private String imageName;
+
 	private Date addedDate;
-	private CategoryDto category;
+
+	private CategoryDto2 category;
+
 	@NotBlank
-	private UserDto user;
+	private UserSortDto user;
 	
 	//private Set<CommentDto> comments =new HashSet<>();
 }

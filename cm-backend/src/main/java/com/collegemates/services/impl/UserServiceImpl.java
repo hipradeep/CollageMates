@@ -4,26 +4,22 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.collegemates.config.AppConstants;
-import com.collegemates.entities.Category;
 import com.collegemates.entities.College;
 import com.collegemates.entities.Role;
 import com.collegemates.entities.User;
 import com.collegemates.exceptions.ResourceNotFoundException;
 import com.collegemates.payloads.UserDto;
+import com.collegemates.payloads.UserSortDto;
+import com.collegemates.payloads.UserSortDto2;
 import com.collegemates.repositories.CollegeRepo;
 import com.collegemates.repositories.RoleRepo;
 import com.collegemates.repositories.UserRepo;
 import com.collegemates.services.UserService;
-import com.collegemates.utils.DateUtil;
-import org.hibernate.mapping.Collection;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -78,24 +74,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto, Integer userId) {
+    public UserSortDto updateUser(UserSortDto userDto, Integer userId) {
+
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id ", userId));
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+
         user.setBio(userDto.getBio());
         user.setDob(userDto.getDob());
         User updatedUser = this.userRepo.save(user);
-        UserDto userDtol = this.userToDto(updatedUser);
 
-        return userDtol;
+        return this.modelMapper.map(updatedUser, UserSortDto.class);
     }
 
     @Override
     public UserDto getUserById(Integer userId) {
-        User user = this.userRepo.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", " Id ", userId));
-        return this.userToDto(user);
+        User user = this.userRepo.findById(userId)  .orElseThrow(() -> new ResourceNotFoundException("User", " Id ", userId));
+        return this.modelMapper.map(user, UserDto.class);
+    }
+
+    @Override
+    public UserSortDto2 getFullDetailsUserById(Integer userId) {
+        User user = this.userRepo.findById(userId)  .orElseThrow(() -> new ResourceNotFoundException("User", " Id ", userId));
+        return this.modelMapper.map(user, UserSortDto2.class);
+    }
+
+    @Override
+    public UserSortDto getUserByEmail(String email) {
+
+        User user = this.userRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User", " Email "+email, 0));
+        return this.modelMapper.map(user, UserSortDto.class);
+    }
+
+    @Override
+    public UserSortDto getUserByIdSort(Integer userId) {
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " Id ", userId));
+        return this.modelMapper.map(user, UserSortDto.class);
     }
 
     @Override
@@ -126,6 +140,18 @@ public class UserServiceImpl implements UserService {
         user.setColleges(allCollages);
         User updatedUser = this.userRepo.save(user);
         return this.modelMapper.map(updatedUser, UserDto.class);
+    }
+
+    @Override
+    public UserSortDto uploadUserProfile(UserSortDto userSortDto, Integer userId) {
+
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id ", userId));
+
+        user.setProfileUrl(userSortDto.getProfileUrl());
+
+        System.out.println(user);
+        User updatedUser = this.userRepo.save(user);
+        return this.modelMapper.map(updatedUser, UserSortDto.class);
     }
 
     public User dtoToUser(UserDto userDto) {

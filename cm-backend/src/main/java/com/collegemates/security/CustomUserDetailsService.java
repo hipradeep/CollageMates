@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+
     @Autowired
     private UserRepo userRepo;
 
@@ -23,5 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = this.userRepo.findByEmail(username).orElseThrow(()-> new ResourceNotFoundException("User ", "Email : "+username, 0));
         return user;
     }
+
 
 }

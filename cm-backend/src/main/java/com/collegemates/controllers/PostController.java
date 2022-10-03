@@ -7,10 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.collegemates.config.AppConstants;
-import com.collegemates.payloads.ApiResponse;
-import com.collegemates.payloads.PostDto;
-import com.collegemates.payloads.PostDto2;
-import com.collegemates.payloads.PostResponse;
+import com.collegemates.payloads.*;
 import com.collegemates.services.FileService;
 import com.collegemates.services.PostService;
 import org.hibernate.engine.jdbc.StreamUtils;
@@ -45,7 +42,7 @@ public class PostController {
 	private String path;
 
 	// create post
-	@PostMapping("/user/{userId}/posts")
+	@PostMapping("/user/{userId}/postss")
 	public ResponseEntity<PostDto2> createPost(@RequestBody PostDto2 postDto, @PathVariable Integer userId) {
 
 		PostDto2 createPostDto = this.postService.createPost(postDto, userId);
@@ -72,23 +69,25 @@ public class PostController {
 
 	// get all post
 	@GetMapping("/posts")
-	public ResponseEntity<PostResponse> getAllPost(
+	public ResponseEntity<ApiResponse> getAllPost(
 			@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
-			@RequestParam(value = "sotyBy", defaultValue = AppConstants.SORT_BY, required = false) String postId,
-			@RequestParam(value = "sotyDir", defaultValue = AppConstants.SORT_DIR, required = false) String sortDir) {
+			@RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY, required = false) String postId,
+			@RequestParam(value = "sortDir", defaultValue = AppConstants.SORT_DIR, required = false) String sortDir) {
 
 		PostResponse posts = this.postService.getAllPost(pageNumber, pageSize, postId, sortDir);
 
-		return new ResponseEntity<PostResponse>(posts, HttpStatus.OK);
+
+		return new ResponseEntity<>(new ApiResponse<>("Successfully!", true, posts), HttpStatus.OK);
 
 	}
 
 	// get post by post id
 	@GetMapping("/posts/{postId}")
-	public ResponseEntity<PostDto2> getPostbyId(@PathVariable Integer postId) {
-		PostDto2 postDto = this.postService.getPostById(postId);
-		return new ResponseEntity<PostDto2>(postDto, HttpStatus.OK);
+	public ResponseEntity<ApiResponse> getPostbyId(@PathVariable Integer postId) {
+		PostDto3 postDto = this.postService.getPostById(postId);
+
+		return new ResponseEntity<>(new ApiResponse<>("Successfully!", true, postDto), HttpStatus.OK);
 
 	}
 
@@ -101,7 +100,7 @@ public class PostController {
 
 	// update post
 	@PutMapping("/posts/{postId}")
-	public ResponseEntity<PostDto2> updatePost(@RequestBody PostDto2 postDto, @PathVariable Integer postId) {
+	public ResponseEntity<PostDto2> updatePost(@RequestBody PostDto3 postDto, @PathVariable Integer postId) {
 		System.out.println("**************"+postDto.toString());
 		PostDto2 updatedPost = this.postService.updatePost(postDto, postId);
 
@@ -122,7 +121,7 @@ public class PostController {
 	@PostMapping("/post/image/upload/{postId}")
 	public ResponseEntity<PostDto2> uploadPostImage(@RequestParam("image") MultipartFile image,
 			@PathVariable Integer postId) throws IOException {
-		PostDto2 postDto = this.postService.getPostById(postId);
+		PostDto3 postDto = this.postService.getPostById(postId);
 
 		String fileName = this.fileService.uploadImage(path, image);
 
@@ -130,7 +129,31 @@ public class PostController {
 
 		PostDto2 updatedPost = this.postService.updatePost(postDto, postId);
 		return new ResponseEntity<PostDto2>(updatedPost, HttpStatus.OK);
+	}
 
+	// post image upload
+	@PostMapping("/user/{userId}/posts")
+	public ResponseEntity<ApiResponse> createPost(
+			@RequestParam("title") String title,
+			@RequestParam("desc") String desc,
+			@RequestParam("category") int catId,
+			@RequestParam("image") MultipartFile image,
+			@PathVariable Integer userId) throws IOException {
+
+		PostDto postDto = new PostDto( );
+
+		postDto.setTitle(title);
+		postDto.setContent(desc);
+		//String fileName="default.png";
+		String fileName="";
+		if(!image.isEmpty()){
+			fileName = this.fileService.uploadImage(path, image);
+		}
+		postDto.setImageName(fileName);
+
+		PostCreatedDto created = this.postService.createPost2(postDto, userId, catId);
+
+		return	new ResponseEntity<>(new ApiResponse<>("Successfully!", true, created), HttpStatus.OK);
 	}
 
 	// method to serve files

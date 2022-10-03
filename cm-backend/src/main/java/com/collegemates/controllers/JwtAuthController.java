@@ -6,8 +6,8 @@ import com.collegemates.exceptions.BadCredentialException;
 import com.collegemates.helper.JwtUtil;
 import com.collegemates.entities.JwtAuthResponse;
 import com.collegemates.entities.JwtAuthRequest;
-import com.collegemates.payloads.ApiResponse;
 import com.collegemates.payloads.UserDto;
+import com.collegemates.payloads.UserSortDto;
 import com.collegemates.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,8 +44,13 @@ public class JwtAuthController {
 
         response.setToken(token);
 
-        return new ResponseEntity<>(new JwtAuthResponse<>("Login successfully!", true, token), HttpStatus.CREATED);
-
+        UserSortDto userSortDto = null;
+        try {
+            userSortDto = this.userService.getUserByEmail(request.getUsername());
+        } catch (Exception e) {
+            return new ResponseEntity<JwtAuthResponse<String>>(new JwtAuthResponse<>(e.getMessage(), false), HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(new JwtAuthResponse<>("Successfully!", true, token, userSortDto), HttpStatus.CREATED);
     }
 
     private void authentication(String username, String password) throws Exception {

@@ -23,6 +23,9 @@ public interface CollegeService {
     // get single post
     CollegeDto getCollegeById(Integer collegeId);
 
+
+    List<CollegeDto>  getCollegeByName(String collegeName);
+
     // get all posts by category
    // List<PostDto> getPostsByCategory(Integer categoryId);
 

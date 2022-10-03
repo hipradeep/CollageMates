@@ -2,6 +2,7 @@ package com.collegemates.controllers;
 
 import com.collegemates.payloads.ApiResponse;
 import com.collegemates.payloads.CollegeDto;
+import com.collegemates.payloads.PostDto;
 import com.collegemates.payloads.UserDto;
 import com.collegemates.services.CollegeService;
 import com.collegemates.services.UserService;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/college")
@@ -55,5 +57,14 @@ public class CollegeController {
         CollegeDto collegeDto = this.collegeService.getCollegeById(collegeId);
         return new ResponseEntity<>(new ApiResponse<>("Successful!", true, collegeDto), HttpStatus.CREATED);
     }
+    // search post
+    @GetMapping("/search/{keyword}")
+    public ResponseEntity<ApiResponse> searchPostByTitle(@PathVariable String keyword) {
 
+        List<CollegeDto> collegeDtos = this.collegeService.getCollegeByName(keyword);
+
+
+        return new ResponseEntity<>(new ApiResponse<>("Successfully!", true, collegeDtos),
+                HttpStatus.OK);
+    }
 }

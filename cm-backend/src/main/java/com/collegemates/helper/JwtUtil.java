@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    public static final long JWT_TOKEN_VALIDITY = 60 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 60 * 60 * 60*12;
     private String secret = "jwtTokenKey";
 
     public String getUsernameFromToken(String token) {
@@ -49,7 +49,7 @@ public class JwtUtil {
     private String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY + 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY + 10000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 

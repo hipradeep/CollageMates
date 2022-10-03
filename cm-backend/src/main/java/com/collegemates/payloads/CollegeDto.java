@@ -34,17 +34,5 @@ public class CollegeDto {
     @Size(min = 6,max=6,  message = "pincode must be of 6 length")
     private String pincode;
 
-    @Override
-    public String toString() {
-        return "CollegeDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", hUrl='" + hUrl + '\'' +
-                ", pUrl='" + pUrl + '\'' +
-                ", country='" + country + '\'' +
-                ", address='" + address + '\'' +
-                ", state='" + state + '\'' +
-                ", pincode='" + pincode + '\'' +
-                '}';
-    }
+
 }

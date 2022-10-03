@@ -52,19 +52,5 @@ public class College {
         createdDateTime=new Date();
     }
 
-    @Override
-    public String toString() {
-        return "College{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", hUrl='" + hUrl + '\'' +
-                ", pUrl='" + pUrl + '\'' +
-                ", address='" + address + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                ", pincode='" + pincode + '\'' +
-                ", createdDateTime=" + createdDateTime +
-                ", users=" + users +
-                '}';
-    }
+
 }
