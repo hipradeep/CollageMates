@@ -17,3 +17,15 @@ max={new Date().toLocaleDateString('en-ca')}
 //navigation
 import { useNavigate } from "react-router-dom";
  useNavigate(`/todos/${todo.id}`);
+
+//disable cors
+
+cd C:\Program Files\BraveSoftware\Brave-Browser\Application
+
+brave.exe --user-data-dir="C://Chrome dev session" --disable-web-security "C:\Program Files\BraveSoftware\Brave-Browser\Application"
+
+ 
+ 
+require('../avatar.jpg')
+
+src={require('../images/avatar.jpg')}

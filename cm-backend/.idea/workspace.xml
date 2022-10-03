@@ -4,8 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20fc1e17-af37-42bf-933d-8e9009577f65" name="Changes" comment="be-test">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="cc9d79ec-635c-4a70-95e0-16bed9d2c8df" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/images/048a851c-6c00-4c0a-b738-0faa79eca964.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/08912f93-d02b-4ad4-b30e-1f4b7d6be968.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/291bb7b2-8025-4822-8f2b-4d92659a9da0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/29f1049f-42c2-4242-bdb1-93de36b6324b.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/2c6524c2-4ace-4163-a07a-40eb7fb782ac.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/32f70d5b-631e-46b3-b420-c298ad1c3011.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/44b5e579-d06c-47b4-be5c-b37fd5c8accd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/56081473-beae-40b6-86c5-a6c62b0dbf51.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/57e68c01-e46e-49f9-95ae-1da7ea88aaf3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/5aa578fa-d86b-43b6-be6a-429265f3fbc4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/62a2031e-240a-44d1-865d-feec278a116f.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/63fb9a9f-d234-425c-97a6-d60af2aa86d2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/7060db46-edbf-4bc6-8719-b539068f1cd6.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/7965c4f3-6ccc-4e04-9ced-b0473fa3ad2d.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/7e64d736-0f92-4f3f-8d0e-9d8701ca0122.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/93dac2b3-b370-4b82-8440-9bb202b04044.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/9c410bd3-9b59-475a-8fa4-d86959aa3bf0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/a294fd1a-5b44-496c-bd1f-7460d800dc92.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/a3944d27-920b-4547-9b91-634e4877b4db.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/c327273d-76a0-4f25-af6f-4c0d2885e868.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/d52fef7d-4b0b-4b34-8448-205350e3c459.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/df08db75-3ae5-4b59-afc0-709010cdb4e9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/e56281be-efe3-42f5-aa12-20c6fa48bf26.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,28 +38,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="com.haulmont.jpb.NewClass" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$/.." source="backend" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="frontend" />
-        <entry key="$PROJECT_DIR$" value="cb-backend" />
+        <entry key="$PROJECT_DIR$/.." value="backend" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -52,23 +62,27 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2ErVCZUp7C72uW0g112h9OeMkns" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2FQZOe1ixVlDDZA3VT66cenOyuA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "F:/Projects/CollegeMates/cm-backend",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "last_opened_file_path": "F:/Projects"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.collegemates.payloads" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="CollegeMatesApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.collegemates.CollegeMatesApplication" />
@@ -83,11 +97,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CollegeMatesApplication" />
-        <item itemvalue="Application.CollegeMatesApplication" />
-        <item itemvalue="Application.CollegeMatesApplication" />
         <item itemvalue="Application.CollegeMatesApplication" />
         <item itemvalue="Application.CollegeMatesApplication" />
       </list>
@@ -96,41 +118,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="20fc1e17-af37-42bf-933d-8e9009577f65" name="Changes" comment="" />
-      <created>1663353567566</created>
+      <changelist id="cc9d79ec-635c-4a70-95e0-16bed9d2c8df" name="Changes" comment="" />
+      <created>1664426239018</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1663353567566</updated>
+      <updated>1664426239018</updated>
     </task>
-    <task id="LOCAL-00001" summary="cb-spring set up">
-      <created>1663622946272</created>
+    <task id="LOCAL-00001" summary="update">
+      <created>1664817184940</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1663622946272</updated>
+      <updated>1664817184940</updated>
     </task>
-    <task id="LOCAL-00002" summary="backend">
-      <created>1663624653070</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1663624653070</updated>
-    </task>
-    <task id="LOCAL-00003" summary="fe-update">
-      <created>1663624831081</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1663624831081</updated>
-    </task>
-    <task id="LOCAL-00004" summary="be-test">
-      <created>1663625091658</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1663625091658</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,13 +146,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
-    <MESSAGE value="cb-spring set up" />
-    <MESSAGE value="backend" />
-    <MESSAGE value="fe-update" />
-    <MESSAGE value="be-test" />
-    <option name="LAST_COMMIT_MESSAGE" value="be-test" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
